@@ -9,7 +9,7 @@ client <--------------> server
 ```
 to
 ```
-client <-> dktunnel <--------------> dktunnel <-> server
+client <-> tunnel <--------------> tunnel <-> server
 ```
 to gain dktunnel's valuable features, such as secure and persistent. 
 
