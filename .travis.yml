@@ -1,0 +1,12 @@
+language: go
+
+go:
+    - "1.9"
+
+
+install:
+    - go install github.com/dikinova/dktunnel
+
+script:
+    - go test -cpu=1,2 -v ./dktunnel/...
+
