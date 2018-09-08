@@ -41,6 +41,7 @@ usage: bin/dktunnel
 
 some options:
 * secret: for authentication and exchanging encryption key
+* cipher: many ciphers supported, including AES.
 
 
 ## Example
