@@ -3,8 +3,8 @@ package tunnel
 import (
 	"time"
 	"bytes"
-	"sync"
 	"fmt"
+	"sync"
 )
 
 func Report(app APP) {
@@ -53,14 +53,6 @@ var (
 		}
 		return ks
 	}()
-	mapToStr = func(m map[string]uint64) string {
-		var s string
-		for _, k := range mapKeys {
-			s += (" " + k + ":" + fmt.Sprint(m[k]))
-		}
-		return s
-	}
-
 	ctMux sync.Mutex
 	CTmap = make(map[string]uint64)
 )
@@ -75,4 +67,12 @@ func CTtoString() string {
 	ctMux.Lock()
 	defer ctMux.Unlock()
 	return mapToStr(CTmap)
+}
+
+func mapToStr(m map[string]uint64) string {
+	var s string
+	for _, k := range mapKeys {
+		s += (" " + k + ":" + fmt.Sprint(m[k]))
+	}
+	return s
 }

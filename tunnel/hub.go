@@ -132,7 +132,7 @@ func (h *Hub) Start() {
 		}
 	}
 
-	// tunnel disconnect, so reset all link
+	// tunnel disconnect, so close all link
 	Warn("%s reset all link", h.tunnel)
 	h.closeAllLink()
 }

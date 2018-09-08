@@ -12,13 +12,10 @@ import (
 	"time"
 	"bytes"
 	"crypto/sha256"
-	)
-
-const (
-	Version = "v1.1.5"
 )
 
 var (
+	Version   = "v1.1.5"
 	startTime = tunnel.TimeNowMs()
 )
 
