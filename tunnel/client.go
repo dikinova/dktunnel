@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	HeartBeartSpan = 3
+	HeartBeartSpan = 5
 )
 
 type APP interface {
@@ -35,7 +35,7 @@ func newClientHub(tunnel *Tunnel) *ClientHub {
 }
 
 func (h *ClientHub) heartbeat() {
-	//15s一个心跳.用一个较小的周期偏差,将不同hub的心跳时间错开
+	//心跳.用一个较小的周期偏差,将不同hub的心跳时间错开
 	// 客户端发送ping,server端回传pong.
 	tspan := time.Duration(1000*HeartBeartSpan + mrand.Intn(1000))
 	ticker := time.NewTicker(time.Millisecond * tspan)
@@ -113,7 +113,7 @@ func (cli *Client) createHub() (hub *ClientHub, err error) {
 	tunnel := newTunnel(conn)
 	helloA := newHelloA(cli.secret)
 
-	if err = tunnel.WritePacket(0, helloA.toBytes(),true); err != nil {
+	if err = tunnel.WritePacket(0, helloA.toBytes(), true); err != nil {
 		Error("write token failed(%v):%s", tunnel, err)
 		return
 	}
@@ -131,7 +131,7 @@ func (cli *Client) createHub() (hub *ClientHub, err error) {
 		return
 	}
 
-	if err = tunnel.WritePacket(0, helloC,true); err != nil {
+	if err = tunnel.WritePacket(0, helloC, true); err != nil {
 		Error("write token failed(%v):%s", tunnel, err)
 		return
 	}

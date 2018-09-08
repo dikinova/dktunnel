@@ -19,6 +19,7 @@ to gain dktunnel's valuable features, such as secure and persistent.
 go install github.com/dikinova/dktunnel
 ```
 
+or maybe you can find binary files in dist directory.
 
 ## Usage
 

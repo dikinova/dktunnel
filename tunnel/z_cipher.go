@@ -1,5 +1,5 @@
 /*
-来自 goshadowsocks2 项目
+本文件来自 goshadowsocks2 项目
 有少量的改动.
  */
 package tunnel

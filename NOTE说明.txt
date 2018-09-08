@@ -2,5 +2,7 @@
 
 我认为这个项目有2个优点,1是代码非常简洁的实现了核心功能,2是适合作为初学go的人上手学习.为了保持这2个优点,我单独fork本项目.
 
-dikinova, China,2018-09
+有任何建议或者问题,可以联系 dikisite#outlook.com
+
+dikinova, China,2018-09.
 

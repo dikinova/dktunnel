@@ -15,7 +15,7 @@ import (
 	)
 
 const (
-	Version = "gt1.1.5 20180906"
+	Version = "v1.1.5"
 )
 
 var (
