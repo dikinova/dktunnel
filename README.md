@@ -41,7 +41,7 @@ usage: bin/dktunnel
 
 some options:
 * secret: for authentication and exchanging encryption key
-* cipher: many ciphers supported, including AES.
+* available ciphers: AES-128-CFB AES-128-CTR AES-192-CFB AES-192-CTR AES-256-CFB AES-256-CTR CHACHA20IETF CHACHA20X RC4-128 RC4-256
 
 
 ## Example
