@@ -7,7 +7,7 @@ package ztests
 
 import (
 	"testing"
-	"github.com/xjdrew/gotunnel/tunnel"
+	"github.com/dikinova/dktunnel/tunnel"
 	"github.com/jiguorui/crc16"
 	"hash/crc32"
 	"encoding/binary"

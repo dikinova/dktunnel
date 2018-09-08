@@ -2,7 +2,7 @@ package ztests
 
 import "testing"
 import (
-		"github.com/xjdrew/gotunnel/zetc"
+	"github.com/dikinova/dktunnel/zetc"
 )
 
 var input string = "hello, world"
