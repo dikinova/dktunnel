@@ -2,7 +2,7 @@
 来自 goshadowsocks2 项目
 有少量的改动.
  */
-package shadowstream
+package tunnel
 
 import (
 	"crypto/aes"

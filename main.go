@@ -8,12 +8,11 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/xjdrew/gotunnel/tunnel"
-	"github.com/xjdrew/gotunnel/shadowstream"
+	"github.com/dikinova/dktunnel/tunnel"
 	"time"
 	"bytes"
 	"crypto/sha256"
-)
+	)
 
 const (
 	Version = "gt1.1.5 20180906"
@@ -61,7 +60,7 @@ func main() {
 	laddr := flag.String("listen", "127.0.0.1:3333", "listen address.")
 	secret := flag.String("secret", "", "tunnel secret.")
 
-	flag.StringVar(&tunnel.CipherName, "cipher", "dummy", "available ciphers: "+shadowstream.ListCipher())
+	flag.StringVar(&tunnel.CipherName, "cipher", "dummy", "available ciphers: "+tunnel.ListCipher())
 	flag.BoolVar(&tunnel.ExitOnError, "exiterror", false, "exit on error. just for test.")
 	flag.BoolVar(&tunnel.VerifyCRC, "crc", true, "verify data crc.")
 
@@ -78,7 +77,7 @@ func main() {
 		return
 	}
 
-	_, _, cerr := shadowstream.PickCipher(tunnel.CipherName, []byte{1})
+	_, _, cerr := tunnel.PickCipher(tunnel.CipherName, []byte{1})
 	if cerr != nil {
 		fmt.Fprintf(os.Stderr, "no cipher:%s\n", tunnel.CipherName)
 		flag.Usage()

@@ -11,7 +11,6 @@ import (
 	mrand "math/rand"
 	"crypto/cipher"
 
-	"github.com/xjdrew/gotunnel/shadowstream"
 	"crypto/sha256"
 	"github.com/jiguorui/crc16"
 	"crypto/rand"
@@ -98,21 +97,21 @@ func (tn *tnConn) setKeys(taa AuthToken, secretStr string, fromClient bool) {
 	}
 
 	func() {
-		encCipher, encKey, err := shadowstream.PickCipher(CipherName, encSecret[:])
+		encCipher, encKey, err := PickCipher(CipherName, encSecret[:])
 		if err != nil {
 			panic("bad cipher")
 		}
 		encIV := sha256.Sum256(Reverse(encKey))
-		tn.enc = encCipher.Encrypter(shadowstream.Kdf(encIV[:], encCipher.IVSize()))
+		tn.enc = encCipher.Encrypter(Kdf(encIV[:], encCipher.IVSize()))
 	}()
 
 	func() {
-		decCipher, decKey, err := shadowstream.PickCipher(CipherName, decSecret[:])
+		decCipher, decKey, err := PickCipher(CipherName, decSecret[:])
 		if err != nil {
 			panic("bad cipher")
 		}
 		decIV := sha256.Sum256(Reverse(decKey))
-		tn.dec = decCipher.Decrypter(shadowstream.Kdf(decIV[:], decCipher.IVSize()))
+		tn.dec = decCipher.Decrypter(Kdf(decIV[:], decCipher.IVSize()))
 
 	}()
 
@@ -195,7 +194,6 @@ func (tun *Tunnel) startAutoFlush() {
 		}
 	}
 }
-
 
 const flushLimitSize = TunnelPacketSize * 7 / 10
 
