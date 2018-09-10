@@ -101,23 +101,42 @@ func Chacha20X(key []byte) (Cipher, error) {
 
 ///-----------------------------------------------
 
-type dummy []byte
-
-func dummy_reverse(a byte) byte {
-	b := (a << 4) | (a >> 4)
+func dummyEncoder(a byte) byte {
+	b := ((a << 2) | (a >> 6)) ^ 0X06
+	return b
+}
+func dummyDecoder(a byte) byte {
+	b := a ^ 0X06
+	b = (b << 6) | (b >> 2)
 	return b
 }
 
-func (k dummy) XORKeyStream(dst, src []byte) {
-	for i := range src { //将每一个字节的前后互换.
-		dst[i] = dummy_reverse(src[i])
+type dummyEn []byte
+
+func (k dummyEn) XORKeyStream(dst, src []byte) {
+	for i := range src {
+		dst[i] = dummyEncoder(src[i])
 	}
 }
 
-func (k dummy) IVSize() int                       { return 0 }
-func (k dummy) Decrypter(iv []byte) cipher.Stream { return k.Encrypter(iv) }
+type dummyDec []byte
+
+func (k dummyDec) XORKeyStream(dst, src []byte) {
+	for i := range src {
+		dst[i] = dummyDecoder(src[i])
+	}
+}
+
+type dummy []byte
+
+func (k dummy) IVSize() int { return 0 }
+func (k dummy) Decrypter(iv []byte) cipher.Stream {
+	var decoder dummyDec
+	return &decoder
+}
 func (k dummy) Encrypter(iv []byte) cipher.Stream {
-	return k
+	var encoder dummyEn
+	return &encoder
 }
 
 func Dummy(key []byte) (Cipher, error) {

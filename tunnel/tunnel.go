@@ -208,7 +208,7 @@ func (tun *Tunnel) WritePacket(kid uint16, data []byte, forceFlush bool) (err er
 		return tun.werr
 	}
 
-	//这些字节,废弃一些字节.
+	//这些字节,废弃一些字节.该功能暂未启用.
 	if false {
 		dropped := mpool.Get()[0:(4 - tun.writePacketIdCounter%4)]
 		rand.Read(dropped)
@@ -270,7 +270,7 @@ func (tun *Tunnel) ReadPacket() (linkId uint16, data []byte, err error) {
 	deadLine := time.Now().Add(time.Second * time.Duration(TunnelReadTimeout))
 	tun.tconn.SetReadDeadline(deadLine)
 
-	//废弃一些字节.
+	//这些字节,废弃一些字节.该功能暂未启用.
 	if false {
 		dropped := mpool.Get()[0:(4 - tun.readPacketIdCounter%4)]
 		if _, err = io.ReadFull(tun.tconn, dropped); err != nil {
@@ -327,6 +327,6 @@ func (tun *Tunnel) ReadPacket() (linkId uint16, data []byte, err error) {
 }
 
 func (tun Tunnel) String() string {
-	info := fmt.Sprintf("tunnel(%5d, L%s, R%s)", tun.tunId, tun.tconn.LocalAddr(), tun.tconn.RemoteAddr())
+	info := fmt.Sprintf("tunnel(%5d, L/%s, R/%s)", tun.tunId, tun.tconn.LocalAddr(), tun.tconn.RemoteAddr())
 	return info
 }

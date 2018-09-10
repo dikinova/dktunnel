@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/dikinova/dktunnel.svg?branch=master)](https://travis-ci.org/dikinova/dktunnel)
 
 ## dktunnel
-dktunnel is a secure tcp tunnel software. It can use tcp or udp connectioin as low level tunnel.
+dktunnel is a secure tcp tunnel software. It can use tcp connectioin as low level tunnel.
 
 dktunnel could be added to any c/s system using tcp protocol. Make system structure evolve from
 ```
@@ -34,7 +34,7 @@ usage: bin/dktunnel
   -backend string
         backend address (default "127.0.0.1:1234")
   -secret string
-        tunnel secret (default "the answer to life, the universe and everything")
+        tunnel secret
   -log uint
         log level (default 1)
 
